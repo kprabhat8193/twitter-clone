@@ -1,0 +1,67 @@
+.feed {
+  max-width: 35vw;
+  width: 35vw;
+  border: 1px solid rgb(230, 236, 240);
+  height: 100vh;
+}
+
+.feed__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.feed__box {
+  border-bottom: 1px solid rgb(230, 236, 240);
+}
+
+.feed__header > .MuiIconButton-root {
+  color: var(--twitter-color);
+}
+
+.feed__tweetEditor > .MuiAvatar-root {
+  height: 50px;
+  width: 50px;
+  margin: 12px;
+}
+
+.feed__tweetEditor {
+  display: flex;
+  border-bottom: 10px solid rgb(230, 236, 240);
+}
+
+.feed__tweetEditorRight {
+  width: 100%;
+}
+
+.feed__tweetEditorOptions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feed__tweetEditorOptionsLeft {
+  display: flex;
+  align-items: center;
+}
+.feed__tweetEditorOptionsLeft > .MuiIconButton-root {
+  /* margin-right: 5px; */
+  color: var(--twitter-color);
+}
+
+.feed__tweetEditorOptions > .MuiButton-root {
+  background-color: var(--twitter-color);
+  color: white;
+  text-transform: none !important;
+  padding: 5px 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 40px;
+  margin: 10px;
+}
+
+.feed__tweetEditorOptions > .MuiButton-root:hover {
+  background-color: white;
+  color: var(--twitter-color);
+}

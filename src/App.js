@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Sidebar from "./Sidebar";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Feed from "./Feed";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Switch>
+          <Route path="/explore">
+            <Sidebar isActive="explore" />
+          </Route>
+          <Route path="/notifications">
+            <Sidebar isActive="notifications" />
+          </Route>
+          <Route path="/messages">
+            <Sidebar isActive="messages" />
+          </Route>
+          <Route path="/bookmarks">
+            <Sidebar isActive="bookmarks" />
+          </Route>
+          <Route path="/lists">
+            <Sidebar isActive="lists" />
+          </Route>
+          <Route path="/profile">
+            <Sidebar isActive="profile" />
+          </Route>
+          <Route path="/more">
+            <Sidebar isActive="more" />
+          </Route>
+          <Route path="/">
+            <Sidebar isActive="home" />
+            <Feed />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

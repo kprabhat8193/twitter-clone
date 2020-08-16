@@ -1,0 +1,34 @@
+.sidebar {
+  max-width: 30vw;
+  width: 30vw;
+  margin-top: 10px;
+}
+
+.sidebar__container {
+  padding-left: 13vw;
+}
+
+.sidebar__logo {
+  color: var(--twitter-color);
+}
+
+.sidebar__container > .MuiButton-root {
+  background-color: var(--twitter-color);
+  color: white;
+  text-transform: none !important;
+  width: 80%;
+  padding: 10px;
+  font-size: large;
+  font-weight: bold;
+  border-radius: 40px;
+}
+
+.sidebar__container > .MuiButton-root:hover {
+  background-color: white;
+  color: var(--twitter-color);
+}
+
+a {
+  text-decoration: none;
+  color: initial;
+}

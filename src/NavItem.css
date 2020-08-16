@@ -1,0 +1,24 @@
+.navItem {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  padding: 1px 30px 1px 0;
+  border-radius: 30px;
+  text-align: left;
+  transition-property: background-color;
+  transition: 450ms;
+  width: fit-content;
+}
+
+.navItem:hover {
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+.navItem > .MuiSvgIcon-fontSizeLarge {
+  margin: 2px 20px 2px 0;
+}
+
+.navItem > span > h1 {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
