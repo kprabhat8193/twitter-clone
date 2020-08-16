@@ -65,3 +65,8 @@
   background-color: white;
   color: var(--twitter-color);
 }
+
+.feed__tweetEditorRight .MuiInput-underline::before,
+.feed__tweetEditorRight .MuiInput-underline::after {
+  border-bottom: none;
+}

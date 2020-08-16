@@ -16,6 +16,7 @@ const TweetBox = () => {
       <Avatar
         src="https://lh3.googleusercontent.com/a-/AOh14Gherjmcn6TDDWGFH5tWDcFyFIf8T2uEEOYIDTxJ4VQ"
         alt="Prabhat Kuchibhotla"
+        className="feed__avatar"
       />
       <div className="feed__tweetEditorRight">
         <TextField

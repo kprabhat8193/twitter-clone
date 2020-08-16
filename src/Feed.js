@@ -5,6 +5,7 @@ import "./Feed.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import TweetBox from "./TweetBox";
+import TweetFeed from "./TweetFeed";
 
 const Feed = () => {
   return (
@@ -18,6 +19,7 @@ const Feed = () => {
         </IconButton>
       </div>
       <TweetBox />
+      <TweetFeed />
     </div>
   );
 };
