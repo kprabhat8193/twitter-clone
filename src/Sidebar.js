@@ -9,6 +9,7 @@ import FilterNoneIcon from "@material-ui/icons/FilterNone";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
 
 import "./Sidebar.css";
 import NavItem from "./NavItem";
@@ -19,7 +20,9 @@ const Sidebar = ({ isActive }) => {
     <div className="sidebar">
       <nav className="sidebar__container">
         <Link to="/">
-          <TwitterIcon className="sidebar__logo" fontSize="large" />
+          <IconButton>
+            <TwitterIcon className="sidebar__logo" fontSize="large" />
+          </IconButton>
         </Link>
         <Link to="/">
           <NavItem
