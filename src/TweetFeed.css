@@ -1,0 +1,51 @@
+.tweetFeed {
+  width: 100%;
+}
+
+.tweetFeed__box {
+  display: flex;
+}
+
+.tweetFeed__rightNameBar {
+  display: flex;
+}
+
+.tweetFeed__box > .MuiAvatar-root {
+  height: 50px;
+  width: 50px;
+  margin: 12px;
+}
+
+.tweetFeed__rightNameBar {
+  font-size: 0.88rem;
+}
+
+.tweetFeed__right {
+  padding-top: 10px;
+}
+
+.tweet__handle,
+.tweet__timestamp {
+  padding: 0 10px;
+  font-size: 0.83rem;
+  /* color: rgb(136, 136, 136); */
+  color: gray;
+}
+
+.tweet__handle > h3,
+.tweet__timestamp > h3 {
+  font-weight: 350;
+}
+
+.tweetFeed__tweetText {
+  padding-top: 10px;
+}
+
+.tweetFeed__tweetText > p {
+  line-height: 1.35rem;
+}
+
+.tweetFeed__options {
+  display: flex;
+  justify-content: space-between;
+}
