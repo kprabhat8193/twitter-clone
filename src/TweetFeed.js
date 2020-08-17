@@ -9,9 +9,8 @@ import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import db from "./firebase";
 
-const TweetFeed = ({ tweet }) => {
+const TweetFeed = ({ by, timestamp, tweetText }) => {
   const [user, setUser] = useState({});
-  const { by, timestamp, tweetText } = tweet;
 
   useEffect(() => {
     const unsubscribe = db.doc(by).onSnapshot((snapshot) => {
@@ -34,7 +33,7 @@ const TweetFeed = ({ tweet }) => {
               </span>
             </div>
             <div className="tweetFeed__tweetText">
-              <p>{tweet?.tweetText}</p>
+              <p>{tweetText}</p>
             </div>
             <div className="tweetFeed__options">
               <IconButton>

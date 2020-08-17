@@ -41,7 +41,12 @@ const Feed = () => {
       </div>
       <TweetBox />
       {tweets.map((tweet) => (
-        <TweetFeed tweet={tweet} key={tweet.id} />
+        <TweetFeed
+          by={tweet?.by}
+          timestamp={tweet?.timestamp}
+          tweetText={tweet?.tweetText}
+          key={tweet.id}
+        />
       ))}
     </div>
   );
