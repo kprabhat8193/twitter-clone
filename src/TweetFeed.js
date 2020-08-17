@@ -9,7 +9,7 @@ import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import db from "./firebase";
 
-const TweetFeed = ({ by, timestamp, tweetText }) => {
+const TweetFeed = ({ by, timestamp, tweetText, likes, comments, retweets }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -36,15 +36,24 @@ const TweetFeed = ({ by, timestamp, tweetText }) => {
               <p>{tweetText}</p>
             </div>
             <div className="tweetFeed__options">
-              <IconButton>
-                <ChatBubbleOutlineRoundedIcon fontSize="small" />
-              </IconButton>
-              <IconButton>
-                <LoopOutlinedIcon fontSize="small" />
-              </IconButton>
-              <IconButton>
-                <FavoriteBorderOutlinedIcon fontSize="small" />
-              </IconButton>
+              <div className="tweetFeed__optionsContainer">
+                <IconButton>
+                  <ChatBubbleOutlineRoundedIcon fontSize="small" />
+                  <p>{comments}</p>
+                </IconButton>
+              </div>
+              <div className="tweetFeed__optionsContainer">
+                <IconButton>
+                  <LoopOutlinedIcon fontSize="small" />
+                  <p>{retweets}</p>
+                </IconButton>
+              </div>
+              <div className="tweetFeed__optionsContainer">
+                <IconButton>
+                  <FavoriteBorderOutlinedIcon fontSize="small" />
+                  <p>{likes}</p>
+                </IconButton>
+              </div>
               <IconButton>
                 <ShareOutlinedIcon fontSize="small" />
               </IconButton>
