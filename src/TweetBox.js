@@ -7,6 +7,7 @@ import SentimentSatisfiedOutlinedIcon from "@material-ui/icons/SentimentSatisfie
 import EventOutlinedIcon from "@material-ui/icons/EventOutlined";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
+import firebase from "firebase";
 import "./Feed.css";
 import db from "./firebase";
 
@@ -21,6 +22,7 @@ const TweetBox = () => {
         .add({
           by: "users/KqG5IvFgku1UqXsrAWf2",
           tweetText: tweetText,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         })
         .then((docRef) => {
           console.log("Document written with ID: ", docRef.id);
