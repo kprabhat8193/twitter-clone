@@ -22,6 +22,7 @@
 
 .tweetFeed__right {
   padding-top: 10px;
+  flex: 1;
 }
 
 .tweet__handle,
