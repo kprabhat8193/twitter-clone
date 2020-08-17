@@ -8,9 +8,31 @@ import EventOutlinedIcon from "@material-ui/icons/EventOutlined";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import "./Feed.css";
+import db from "./firebase";
 
 const TweetBox = () => {
   const [tweetText, setTweetText] = useState("");
+
+  const handlePostTweet = (e) => {
+    e.preventDefault();
+
+    if (tweetText) {
+      db.collection("tweets")
+        .add({
+          by: "users/KqG5IvFgku1UqXsrAWf2",
+          tweetText: tweetText,
+        })
+        .then((docRef) => {
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
+    }
+
+    setTweetText("");
+  };
+
   return (
     <div className="feed__tweetEditor feed__box">
       <Avatar
@@ -46,7 +68,9 @@ const TweetBox = () => {
               <EventOutlinedIcon />
             </IconButton>
           </div>
-          <Button variant="contained">Tweet</Button>
+          <Button variant="contained" type="submit" onClick={handlePostTweet}>
+            Tweet
+          </Button>
         </div>
       </div>
     </div>
