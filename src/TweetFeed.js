@@ -20,7 +20,7 @@ const TweetFeed = ({ by, timestamp, tweetText }) => {
   return (
     <div className="tweetFeed feed__box">
       <div className="tweetFeed__box">
-        <Avatar src={user.avatarURL} alt={user.displayName} />
+        <Avatar src={user.avatarURL} alt={user.name} />
         <div className="tweetFeed__right">
           <div>
             <div className="tweetFeed__rightNameBar">
