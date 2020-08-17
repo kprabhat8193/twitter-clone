@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar } from "@material-ui/core";
 import "./TweetFeed.css";
 import ChatBubbleOutlineRoundedIcon from "@material-ui/icons/ChatBubbleOutlineRounded";
@@ -7,13 +7,16 @@ import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutline
 import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import IconButton from "@material-ui/core/IconButton";
+import db from "./firebase";
 
-const TweetFeed = () => {
-  const [user, setUser] = useState({
-    displayName: "Prabhat Kuchibhotla",
-    avatarURL:
-      "https://lh3.googleusercontent.com/a-/AOh14Gherjmcn6TDDWGFH5tWDcFyFIf8T2uEEOYIDTxJ4VQ",
-    handle: "@PrabhatTweets",
+const TweetFeed = ({ tweet }) => {
+  const [user, setUser] = useState({});
+  const { by, timestamp, tweetText } = tweet;
+
+  useEffect(() => {
+    const unsubscribe = db.doc(by).onSnapshot((snapshot) => {
+      setUser(snapshot.data());
+    });
   });
   return (
     <div className="tweetFeed feed__box">
@@ -22,7 +25,7 @@ const TweetFeed = () => {
         <div className="tweetFeed__right">
           <div>
             <div className="tweetFeed__rightNameBar">
-              <h3>{user.displayName}</h3>
+              <h3>{user.name}</h3>
               <span className="tweet__handle">
                 <h3>{user.handle}</h3>
               </span>
@@ -31,11 +34,7 @@ const TweetFeed = () => {
               </span>
             </div>
             <div className="tweetFeed__tweetText">
-              <p>
-                {`The quick brown fox jumps over the lazy dog. The quick brown
-                fox jumps over the lazy dog. The quick brown fox jumps over the
-                lazy dog dog`}
-              </p>
+              <p>{tweet?.tweetText}</p>
             </div>
             <div className="tweetFeed__options">
               <IconButton>
