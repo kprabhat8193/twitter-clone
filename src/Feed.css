@@ -1,8 +1,8 @@
 .feed {
-  max-width: 35vw;
-  width: 35vw;
+  max-width: 40vw;
+  width: 40vw;
   border: 1px solid rgb(230, 236, 240);
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .feed__header {
@@ -69,4 +69,14 @@
 .feed__tweetEditorRight .MuiInput-underline::before,
 .feed__tweetEditorRight .MuiInput-underline::after {
   border-bottom: none;
+}
+
+.feed__scrollable {
+  height: 75vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.feed__scrollable::-webkit-scrollbar {
+  display: none;
 }

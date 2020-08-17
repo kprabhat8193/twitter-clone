@@ -13,16 +13,19 @@ const Feed = () => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    const unsubscribe = db.collection("tweets").onSnapshot((snapshot) => {
-      setTweets(
-        snapshot.docs.map((doc) => {
-          return {
-            ...doc.data(),
-            id: doc.id,
-          };
-        })
-      );
-    });
+    const unsubscribe = db
+      .collection("tweets")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setTweets(
+          snapshot.docs.map((doc) => {
+            return {
+              ...doc.data(),
+              id: doc.id,
+            };
+          })
+        );
+      });
 
     return () => {
       unsubscribe();
@@ -40,17 +43,19 @@ const Feed = () => {
         </IconButton>
       </div>
       <TweetBox />
-      {tweets.map((tweet) => (
-        <TweetFeed
-          by={tweet?.by}
-          timestamp={tweet?.timestamp}
-          tweetText={tweet?.tweetText}
-          key={tweet?.id}
-          comments={tweet?.comments}
-          retweets={tweet?.retweets}
-          likes={tweet?.likes}
-        />
-      ))}
+      <div className="feed__scrollable">
+        {tweets.map((tweet) => (
+          <TweetFeed
+            by={tweet?.by}
+            timestamp={tweet?.timestamp}
+            tweetText={tweet?.tweetText}
+            key={tweet?.id}
+            comments={tweet?.comments}
+            retweets={tweet?.retweets}
+            likes={tweet?.likes}
+          />
+        ))}
+      </div>
     </div>
   );
 };
