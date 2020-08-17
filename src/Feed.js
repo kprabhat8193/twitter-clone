@@ -45,7 +45,10 @@ const Feed = () => {
           by={tweet?.by}
           timestamp={tweet?.timestamp}
           tweetText={tweet?.tweetText}
-          key={tweet.id}
+          key={tweet?.id}
+          comments={tweet?.comments}
+          retweets={tweet?.retweets}
+          likes={tweet?.likes}
         />
       ))}
     </div>
