@@ -50,3 +50,7 @@
   display: flex;
   justify-content: space-between;
 }
+
+.tweetFeed__options > .MuiIconButton-root {
+  color: var(--twitter-color);
+}
