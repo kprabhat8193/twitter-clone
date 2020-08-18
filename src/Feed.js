@@ -53,6 +53,7 @@ const Feed = () => {
             comments={tweet?.comments}
             retweets={tweet?.retweets}
             likes={tweet?.likes}
+            id={tweet?.id}
           />
         ))}
       </div>

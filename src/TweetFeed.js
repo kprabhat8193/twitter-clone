@@ -9,14 +9,31 @@ import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import db from "./firebase";
 
-const TweetFeed = ({ by, timestamp, tweetText, likes, comments, retweets }) => {
+const TweetFeed = ({
+  by,
+  timestamp,
+  tweetText,
+  likes,
+  comments,
+  retweets,
+  id,
+}) => {
   const [user, setUser] = useState({});
+  const tweetRef = db.collection("tweets").doc(id);
 
   useEffect(() => {
     const unsubscribe = db.doc(by).onSnapshot((snapshot) => {
       setUser(snapshot.data());
     });
   });
+
+  const handleLikeUpdate = (e) => {
+    e.preventDefault();
+
+    tweetRef.update({
+      likes: likes ? likes + 1 : 1,
+    });
+  };
   return (
     <div className="tweetFeed feed__box">
       <div className="tweetFeed__box">
@@ -49,7 +66,7 @@ const TweetFeed = ({ by, timestamp, tweetText, likes, comments, retweets }) => {
                 </IconButton>
               </div>
               <div className="tweetFeed__optionsContainer">
-                <IconButton>
+                <IconButton type="button" onClick={handleLikeUpdate}>
                   <FavoriteBorderOutlinedIcon fontSize="small" />
                   <p>{likes}</p>
                 </IconButton>
