@@ -12,7 +12,7 @@
   color: var(--twitter-color);
 }
 
-.sidebar__container > .MuiButton-root {
+.sidebar__tweetButton > .MuiButton-root {
   background-color: var(--twitter-color);
   color: white;
   text-transform: none !important;
@@ -23,7 +23,7 @@
   border-radius: 40px;
 }
 
-.sidebar__container > .MuiButton-root:hover {
+.sidebar__tweetButton > .MuiButton-root:hover {
   background-color: white;
   color: var(--twitter-color);
 }
