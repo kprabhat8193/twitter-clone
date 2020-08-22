@@ -1,7 +1,7 @@
 .sidebar {
-  max-width: 30vw;
-  width: 30vw;
+  /* max-width: 30vw; */
   margin-top: 10px;
+  flex: 0.3;
 }
 
 .sidebar__container {
@@ -31,4 +31,22 @@
 a {
   text-decoration: none;
   color: initial;
+}
+
+@media (max-width: 1000px) {
+  .sidebar__container .navItem > span > h1 {
+    display: none;
+  }
+
+  .sidebar {
+    flex: 0.15;
+  }
+
+  .sidebar__container {
+    padding-left: 5px;
+  }
+
+  .sidebar__container .navItem {
+    padding: 0 10px;
+  }
 }

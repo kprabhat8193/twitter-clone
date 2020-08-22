@@ -1,0 +1,6 @@
+.feed__tweetEditorOptionsLeft
+  > .MuiButtonBase-root
+  > .MuiIconButton-label
+  > input {
+  display: hidden;
+}

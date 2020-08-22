@@ -9,10 +9,13 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import firebase from "firebase";
 import "./Feed.css";
+import "./TweetBox.css";
 import db from "./firebase";
+import { useStateValue } from "./StateProvider";
 
 const TweetBox = () => {
   const [tweetText, setTweetText] = useState("");
+  const [{ user }] = useStateValue();
 
   const handlePostTweet = (e) => {
     e.preventDefault();
@@ -20,7 +23,7 @@ const TweetBox = () => {
     if (tweetText) {
       db.collection("tweets")
         .add({
-          by: "users/KqG5IvFgku1UqXsrAWf2",
+          by: "users/" + user?.uid,
           tweetText: tweetText,
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         })
@@ -37,11 +40,7 @@ const TweetBox = () => {
 
   return (
     <div className="feed__tweetEditor feed__box">
-      <Avatar
-        src="https://lh3.googleusercontent.com/a-/AOh14Gherjmcn6TDDWGFH5tWDcFyFIf8T2uEEOYIDTxJ4VQ"
-        alt="Prabhat Kuchibhotla"
-        className="feed__avatar"
-      />
+      <Avatar src={user?.photoURL} alt={user?.name} className="feed__avatar" />
       <div className="feed__tweetEditorRight">
         <TextField
           margin="normal"

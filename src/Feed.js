@@ -42,8 +42,9 @@ const Feed = () => {
           <ScatterPlotOutlinedIcon fontSize="large" />
         </IconButton>
       </div>
-      <TweetBox />
+
       <div className="feed__scrollable">
+        <TweetBox />
         {tweets.map((tweet) => (
           <TweetFeed
             by={tweet?.by}

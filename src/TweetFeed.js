@@ -25,7 +25,11 @@ const TweetFeed = ({
     const unsubscribe = db.doc(by).onSnapshot((snapshot) => {
       setUser(snapshot.data());
     });
-  });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const handleLikeUpdate = (e) => {
     e.preventDefault();
@@ -37,13 +41,13 @@ const TweetFeed = ({
   return (
     <div className="tweetFeed feed__box">
       <div className="tweetFeed__box">
-        <Avatar src={user.avatarURL} alt={user.name} />
+        <Avatar src={user.profilePic} alt={user.name} />
         <div className="tweetFeed__right">
           <div>
             <div className="tweetFeed__rightNameBar">
               <h3>{user.name}</h3>
               <span className="tweet__handle">
-                <h3>{user.handle}</h3>
+                <h3>{`@${user.handle}`}</h3>
               </span>
               <span className="tweet__timestamp">
                 <h3>2h</h3>
@@ -66,7 +70,11 @@ const TweetFeed = ({
                 </IconButton>
               </div>
               <div className="tweetFeed__optionsContainer">
-                <IconButton type="button" onClick={handleLikeUpdate}>
+                <IconButton
+                  type="button"
+                  onClick={handleLikeUpdate}
+                  className="tweetFeed__optionsLikeButton"
+                >
                   <FavoriteBorderOutlinedIcon fontSize="small" />
                   <p>{likes}</p>
                 </IconButton>
