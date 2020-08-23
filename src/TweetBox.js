@@ -53,19 +53,33 @@ const TweetBox = () => {
         />
         <div className="feed__tweetEditorOptions">
           <div className="feed__tweetEditorOptionsLeft">
-            <IconButton>
-              <ImageOutlinedIcon />
-            </IconButton>
-            <IconButton>
-              <GifIcon />
-            </IconButton>
-            <IconButton>
+            <div className="tweetOptions__input">
+              <input type="file" id="file-upload" />
+
+              <IconButton className="tweetOptions__button">
+                <label for="file-upload">
+                  <ImageOutlinedIcon />
+                </label>
+              </IconButton>
+            </div>
+            <div className="tweetOptions__input">
+              <input type="file" id="file-upload" />
+
+              <IconButton className="tweetOptions__button">
+                <label for="file-upload">
+                  <GifIcon />
+                </label>
+              </IconButton>
+            </div>
+
+            <IconButton className="tweetOptions__button">
               <BarChartIcon />
             </IconButton>
-            <IconButton>
+
+            <IconButton className="tweetOptions__button">
               <SentimentSatisfiedOutlinedIcon />
             </IconButton>
-            <IconButton>
+            <IconButton className="tweetOptions__button">
               <EventOutlinedIcon />
             </IconButton>
           </div>

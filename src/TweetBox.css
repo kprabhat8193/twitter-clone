@@ -1,6 +1,7 @@
-.feed__tweetEditorOptionsLeft
-  > .MuiButtonBase-root
-  > .MuiIconButton-label
-  > input {
-  display: hidden;
+.tweetOptions__input > input {
+  display: none;
+}
+
+.tweetOptions__button .MuiSvgIcon-root {
+  color: var(--twitter-color);
 }
