@@ -48,6 +48,7 @@ const TweetBox = () => {
           type="text"
           fullWidth
           multiline
+          autoFocus
           placeholder="What's happening?"
           onChange={(e) => setTweetText(e.target.value)}
         />
@@ -57,7 +58,7 @@ const TweetBox = () => {
               <input type="file" id="file-upload" />
 
               <IconButton className="tweetOptions__button">
-                <label for="file-upload">
+                <label htmlFor="file-upload">
                   <ImageOutlinedIcon />
                 </label>
               </IconButton>
@@ -66,7 +67,7 @@ const TweetBox = () => {
               <input type="file" id="file-upload" />
 
               <IconButton className="tweetOptions__button">
-                <label for="file-upload">
+                <label htmlFor="file-upload">
                   <GifIcon />
                 </label>
               </IconButton>
