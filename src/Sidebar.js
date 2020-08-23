@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TwitterIcon from "@material-ui/icons/Twitter";
+import { Avatar } from "@material-ui/core";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import ExploreOutlinedIcon from "@material-ui/icons/ExploreOutlined";
 import NotificationsOutlinedIcon from "@material-ui/icons/NotificationsOutlined";
@@ -19,8 +20,12 @@ import "./Sidebar.css";
 import NavItem from "./NavItem";
 import { Link } from "react-router-dom";
 import TweetBox from "./TweetBox";
+import { useStateValue } from "./StateProvider";
+import { getHandle } from "./utils";
 
 const Sidebar = ({ isActive }) => {
+  const [{ user }] = useStateValue();
+
   const useStyles = makeStyles((theme) => ({
     modal: {
       display: "flex",
@@ -51,87 +56,102 @@ const Sidebar = ({ isActive }) => {
   return (
     <div className="sidebar">
       <nav className="sidebar__container">
-        <Link to="/">
-          <IconButton>
-            <TwitterIcon className="sidebar__logo" fontSize="large" />
-          </IconButton>
-        </Link>
-        <Link to="/">
-          <NavItem
-            Icon={HomeOutlinedIcon}
-            title="Home"
-            isActive={"home" === isActive}
-          />
-        </Link>
+        <div className="sidebar__top">
+          <Link to="/">
+            <IconButton>
+              <TwitterIcon className="sidebar__logo" fontSize="large" />
+            </IconButton>
+          </Link>
+          <Link to="/">
+            <NavItem
+              Icon={HomeOutlinedIcon}
+              title="Home"
+              isActive={"home" === isActive}
+            />
+          </Link>
 
-        <Link to="/explore">
+          <Link to="/explore">
+            <NavItem
+              Icon={ExploreOutlinedIcon}
+              title="Explore"
+              isActive={"explore" === isActive}
+            />
+          </Link>
+          <Link to="/notifications">
+            <NavItem
+              Icon={NotificationsOutlinedIcon}
+              title="Notifications"
+              isActive={"notifications" === isActive}
+            />
+          </Link>
+          <Link to="/messages">
+            <NavItem
+              Icon={EmailOutlinedIcon}
+              title="Messages"
+              isActive={"messages" === isActive}
+            />
+          </Link>
+          <Link to="bookmarks">
+            <NavItem
+              Icon={BookmarkBorderOutlinedIcon}
+              title="Bookmarks"
+              isActive={"bookmarks" === isActive}
+            />
+          </Link>
+          <Link to="/lists">
+            <NavItem
+              Icon={FilterNoneIcon}
+              title="Lists"
+              isActive={"lists" === isActive}
+            />
+          </Link>
+          <Link to="/profile">
+            <NavItem
+              Icon={PersonOutlineIcon}
+              title="Profile"
+              isActive={"profile" === isActive}
+            />
+          </Link>
           <NavItem
-            Icon={ExploreOutlinedIcon}
-            title="Explore"
-            isActive={"explore" === isActive}
+            Icon={MoreHorizIcon}
+            title="More"
+            isActive={"more" === isActive}
           />
-        </Link>
-        <Link to="/notifications">
-          <NavItem
-            Icon={NotificationsOutlinedIcon}
-            title="Notifications"
-            isActive={"notifications" === isActive}
+          <div className="sidebar__tweetButton">
+            <Button variant="contained" onClick={handleOpen}>
+              Tweet
+            </Button>
+            <Modal
+              aria-labelledby="tweet-box"
+              className={classes.modal}
+              open={modalOpen}
+              onClose={handleClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <Fade in={modalOpen}>
+                <div className={classes.paper}>
+                  <TweetBox id="tweet-box" />
+                </div>
+              </Fade>
+            </Modal>
+          </div>
+        </div>
+        <div className="sidebar__profile">
+          <Avatar
+            src={user?.photoURL}
+            alt={user?.displayName}
+            className="profile__avatar"
           />
-        </Link>
-        <Link to="/messages">
-          <NavItem
-            Icon={EmailOutlinedIcon}
-            title="Messages"
-            isActive={"messages" === isActive}
-          />
-        </Link>
-        <Link to="bookmarks">
-          <NavItem
-            Icon={BookmarkBorderOutlinedIcon}
-            title="Bookmarks"
-            isActive={"bookmarks" === isActive}
-          />
-        </Link>
-        <Link to="/lists">
-          <NavItem
-            Icon={FilterNoneIcon}
-            title="Lists"
-            isActive={"lists" === isActive}
-          />
-        </Link>
-        <Link to="/profile">
-          <NavItem
-            Icon={PersonOutlineIcon}
-            title="Profile"
-            isActive={"profile" === isActive}
-          />
-        </Link>
-        <NavItem
-          Icon={MoreHorizIcon}
-          title="More"
-          isActive={"more" === isActive}
-        />
-        <div className="sidebar__tweetButton">
-          <Button variant="contained" onClick={handleOpen}>
-            Tweet
-          </Button>
-          <Modal
-            aria-labelledby="tweet-box"
-            className={classes.modal}
-            open={modalOpen}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 500,
-            }}
-          >
-            <Fade in={modalOpen}>
-              <div className={classes.paper}>
-                <TweetBox id="tweet-box" />
-              </div>
-            </Fade>
-          </Modal>
+          <div className="profile__name">
+            <h4>{user?.displayName}</h4>
+            <span className="profile__handle">
+              <h5>{`@${getHandle(user?.email)}`}</h5>
+            </span>
+          </div>
         </div>
       </nav>
     </div>
