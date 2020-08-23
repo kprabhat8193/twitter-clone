@@ -1,20 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@material-ui/core";
 import database, { auth } from "./firebase";
-import { provider } from "./firebase";
+import db, { provider } from "./firebase";
 import "./LoginScreen.css";
 import { useStateValue } from "./StateProvider";
 import { actionTypes } from "./reducer";
+import { getHandle } from "./utils";
 
 const LoginScreen = () => {
   const [state, dispatch] = useStateValue();
-
-  const getHandle = (email) => {
-    if (email) {
-      const atIndex = email.indexOf("@");
-      return email.substr(0, atIndex);
-    }
-  };
 
   const login = (e) => {
     e.preventDefault();
