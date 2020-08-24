@@ -55,6 +55,7 @@ const Feed = () => {
             retweets={tweet?.retweets}
             likes={tweet?.likes}
             id={tweet?.id}
+            image={tweet?.imageURL}
           />
         ))}
       </div>
