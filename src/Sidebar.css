@@ -74,3 +74,8 @@ a {
   color: gray;
   font-weight: 350;
 }
+
+.sidebar__profile > .MuiAvatar-root {
+  height: 50px;
+  width: 50px;
+}
