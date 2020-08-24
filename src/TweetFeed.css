@@ -62,5 +62,8 @@
 
 .tweetFeed__image {
   margin-top: 5px;
+  margin-right: 20px;
   border-radius: 10px;
+  object-fit: contain;
+  max-width: 30vw;
 }
