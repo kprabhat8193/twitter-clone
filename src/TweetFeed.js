@@ -17,6 +17,7 @@ const TweetFeed = ({
   comments,
   retweets,
   id,
+  image,
 }) => {
   const [user, setUser] = useState({});
   const tweetRef = db.collection("tweets").doc(id);
@@ -29,7 +30,7 @@ const TweetFeed = ({
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [by]);
 
   const handleLikeUpdate = (e) => {
     e.preventDefault();
@@ -56,6 +57,9 @@ const TweetFeed = ({
             <div className="tweetFeed__tweetText">
               <p>{tweetText}</p>
             </div>
+            {image && (
+              <img src={image} alt="tweet media" className="tweetFeed__image" />
+            )}
             <div className="tweetFeed__options">
               <div className="tweetFeed__optionsContainer">
                 <IconButton>

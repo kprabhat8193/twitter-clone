@@ -59,3 +59,8 @@
   color: rgba(224, 36, 94, 0.1);
   background: none;
 }
+
+.tweetFeed__image {
+  margin-top: 5px;
+  border-radius: 10px;
+}
