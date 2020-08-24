@@ -17,6 +17,7 @@ const TweetBox = () => {
   const [tweetText, setTweetText] = useState("");
   const [{ user }] = useStateValue();
   const [imageFileURL, setImageFileURL] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   const handlePostTweet = (e) => {
     e.preventDefault();
@@ -41,6 +42,7 @@ const TweetBox = () => {
   };
 
   const onImageChange = async (e) => {
+    setDisabled(true);
     if (e.target.files.length > 0) {
       const file = e.target.files[0];
       console.log(">>>IMAGE uploaded ", file.name);
@@ -80,7 +82,8 @@ const TweetBox = () => {
       );
     }
 
-    e.target.files = [];
+    // e.target.files = ;
+    setDisabled(false);
   };
 
   return (
@@ -129,7 +132,12 @@ const TweetBox = () => {
               <EventOutlinedIcon />
             </IconButton>
           </div>
-          <Button variant="contained" type="submit" onClick={handlePostTweet}>
+          <Button
+            variant="contained"
+            type="submit"
+            disabled={disabled}
+            onClick={handlePostTweet}
+          >
             Tweet
           </Button>
         </div>
