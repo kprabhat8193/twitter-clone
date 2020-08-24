@@ -10,12 +10,13 @@ import IconButton from "@material-ui/core/IconButton";
 import firebase from "firebase";
 import "./Feed.css";
 import "./TweetBox.css";
-import db from "./firebase";
+import db, { storageRef } from "./firebase";
 import { useStateValue } from "./StateProvider";
 
 const TweetBox = () => {
   const [tweetText, setTweetText] = useState("");
   const [{ user }] = useStateValue();
+  const [imageFileURL, setImageFileURL] = useState("");
 
   const handlePostTweet = (e) => {
     e.preventDefault();
@@ -26,6 +27,7 @@ const TweetBox = () => {
           by: "users/" + user?.uid,
           tweetText: tweetText,
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          imageURL: imageFileURL,
         })
         .then((docRef) => {
           console.log("Document written with ID: ", docRef.id);
@@ -36,6 +38,49 @@ const TweetBox = () => {
     }
 
     setTweetText("");
+  };
+
+  const onImageChange = async (e) => {
+    if (e.target.files.length > 0) {
+      const file = e.target.files[0];
+      console.log(">>>IMAGE uploaded ", file.name);
+      const fileRef = storageRef.child(file.name);
+      const uploadTask = await fileRef.put(file);
+      uploadTask.task.on(
+        firebase.storage.TaskEvent.STATE_CHANGED,
+        (snapshot) => {
+          let progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          switch (error.code) {
+            case "storage/unauthorized":
+              console.error("User not authorized to upload image!");
+              break;
+
+            case "storage/canceled":
+              console.error("User cancelled the upload!");
+              break;
+
+            case "storage/unknown":
+              console.error("Unknown error occurred: ", error.serverResponse);
+              break;
+          }
+        },
+        () => {
+          //upload completed successfully.
+          uploadTask.task.snapshot.ref
+            .getDownloadURL()
+            .then(function (downloadURL) {
+              console.log("File available at", downloadURL);
+              setImageFileURL(downloadURL);
+            });
+        }
+      );
+    }
+
+    e.target.files = [];
   };
 
   return (
@@ -55,7 +100,7 @@ const TweetBox = () => {
         <div className="feed__tweetEditorOptions">
           <div className="feed__tweetEditorOptionsLeft">
             <div className="tweetOptions__input">
-              <input type="file" id="file-upload" />
+              <input type="file" id="file-upload" onChange={onImageChange} />
 
               <IconButton className="tweetOptions__button">
                 <label htmlFor="file-upload">
