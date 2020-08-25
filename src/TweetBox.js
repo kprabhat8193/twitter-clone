@@ -29,7 +29,10 @@ const TweetBox = () => {
   };
 
   useEffect(() => {
-    setTweetText(tweetText + chosenEmoji);
+    if (chosenEmoji) {
+      setTweetText(tweetText + chosenEmoji);
+      setChosenEmoji(null);
+    }
   }, [chosenEmoji]);
 
   const handlePostTweet = (e) => {
