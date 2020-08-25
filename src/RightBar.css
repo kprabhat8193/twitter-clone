@@ -1,0 +1,60 @@
+.rightBar {
+  flex: 0.25;
+  padding-right: 13vw;
+  padding-left: 2rem;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rightBar__search {
+  display: flex;
+  align-items: center;
+  background: rgb(245, 248, 250);
+  border-radius: 99px;
+  border: 1px solid rgb(230, 236, 240);
+}
+
+.rightBar__search > .MuiSvgIcon-root {
+  padding: 0 5px;
+}
+
+.rightBar__input {
+  /* flex: 1; */
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+  background: inherit;
+  color: rgb(20, 23, 26);
+  line-height: 1.3125;
+}
+
+.rightBar__input:focus {
+  outline: 0;
+}
+
+@media (max-width: 1000px) {
+  .rightBar {
+    display: none;
+  }
+}
+
+.rightBar__whotoFollow {
+  margin-top: 3rem;
+  background-color: rgb(245, 248, 250);
+  border-radius: 10px;
+  border: 1px solid rgb(230, 236, 240);
+}
+
+.rightBar__whotoFollow > h2 {
+  padding: 20px 10px;
+  border-bottom: 1px solid rgb(230, 236, 240);
+}
+
+.rightBar__whotoFollow > .user {
+  padding: 10px;
+}
+
+.rightBar__timelineFeed {
+  margin-top: 20px;
+}

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Feed from "./Feed";
 import { useStateValue } from "./StateProvider";
 import LoginScreen from "./LoginScreen";
+import RightBar from "./RightBar";
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -40,6 +41,7 @@ function App() {
             <Route path="/">
               <Sidebar isActive="home" />
               <Feed />
+              <RightBar />
             </Route>
           </Switch>
         )}
