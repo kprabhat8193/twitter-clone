@@ -5,3 +5,7 @@
 .tweetOptions__button .MuiSvgIcon-root {
   color: var(--twitter-color);
 }
+
+.tweetBox__emojiPicker {
+  position: absolute;
+}

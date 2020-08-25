@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar, TextField } from "@material-ui/core";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import GifIcon from "@material-ui/icons/Gif";
@@ -7,6 +7,8 @@ import SentimentSatisfiedOutlinedIcon from "@material-ui/icons/SentimentSatisfie
 import EventOutlinedIcon from "@material-ui/icons/EventOutlined";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
+import Picker from "emoji-picker-react";
+
 import firebase from "firebase";
 import "./Feed.css";
 import "./TweetBox.css";
@@ -18,6 +20,17 @@ const TweetBox = () => {
   const [{ user }] = useStateValue();
   const [imageFileURL, setImageFileURL] = useState("");
   const [disabled, setDisabled] = useState(false);
+  const [chosenEmoji, setChosenEmoji] = useState("");
+  const [displayEmojiPicker, setDisplayEmojiPicker] = useState(false);
+
+  const onEmojiClick = (event, emojiObject) => {
+    const { emoji } = emojiObject;
+    setChosenEmoji(emoji);
+  };
+
+  useEffect(() => {
+    setTweetText(tweetText + chosenEmoji);
+  }, [chosenEmoji]);
 
   const handlePostTweet = (e) => {
     e.preventDefault();
@@ -123,7 +136,10 @@ const TweetBox = () => {
               <BarChartIcon />
             </IconButton>
 
-            <IconButton className="tweetOptions__button">
+            <IconButton
+              className="tweetOptions__button"
+              onClick={(e) => setDisplayEmojiPicker(!displayEmojiPicker)}
+            >
               <SentimentSatisfiedOutlinedIcon />
             </IconButton>
             <IconButton className="tweetOptions__button">
@@ -139,6 +155,15 @@ const TweetBox = () => {
             Tweet
           </Button>
         </div>
+        {displayEmojiPicker && (
+          <div className="tweetBox__emojiPicker">
+            <Picker
+              onEmojiClick={onEmojiClick}
+              disableAutoFocus={true}
+              groupNames={{ smileys_people: "PEOPLE" }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
