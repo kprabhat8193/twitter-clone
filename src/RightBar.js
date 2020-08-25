@@ -38,12 +38,13 @@ const RightBar = () => {
       </div>
       <div className="rightBar__whotoFollow">
         <h2>Who to Follow</h2>
-        {users.map(({ name, profilePic, handle }) => (
+        {users.map(({ name, profilePic, handle, id }) => (
           <User
             className="whoToFollow__user"
             name={name}
             profilePic={profilePic}
             handle={handle}
+            key={id}
           />
         ))}
       </div>
