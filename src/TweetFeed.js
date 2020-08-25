@@ -21,6 +21,17 @@ const TweetFeed = ({
 }) => {
   const [user, setUser] = useState({});
   const tweetRef = db.collection("tweets").doc(id);
+  const formattedTimestamp = Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+  }).format(timestamp?.toDate());
+
+  const formattedDate = Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  }).format(timestamp?.toDate());
 
   useEffect(() => {
     const unsubscribe = db.doc(by).onSnapshot((snapshot) => {
@@ -51,7 +62,7 @@ const TweetFeed = ({
                 <h3>{`@${user.handle}`}</h3>
               </span>
               <span className="tweet__timestamp">
-                <h3>2h</h3>
+                <h3>{`${formattedTimestamp?.toString()} ${formattedDate}`}</h3>
               </span>
             </div>
             <div className="tweetFeed__tweetText">
