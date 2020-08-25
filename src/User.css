@@ -1,0 +1,9 @@
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user > .MuiAvatar-root {
+  height: 50px;
+  width: 50px;
+}
