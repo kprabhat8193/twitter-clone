@@ -81,8 +81,6 @@ const TweetBox = () => {
         }
       );
     }
-
-    // e.target.files = ;
     setDisabled(false);
   };
 
