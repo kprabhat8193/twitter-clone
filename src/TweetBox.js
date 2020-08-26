@@ -41,7 +41,7 @@ const TweetBox = () => {
     if (tweetText) {
       db.collection("tweets")
         .add({
-          by: "users/" + user?.uid,
+          by: "users/" + user?.id,
           tweetText: tweetText,
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           imageURL: imageFileURL,
@@ -102,7 +102,11 @@ const TweetBox = () => {
 
   return (
     <div className="feed__tweetEditor feed__box">
-      <Avatar src={user?.photoURL} alt={user?.name} className="feed__avatar" />
+      <Avatar
+        src={user?.profilePic}
+        alt={user?.name}
+        className="feed__avatar"
+      />
       <div className="feed__tweetEditorRight">
         <TextField
           margin="normal"

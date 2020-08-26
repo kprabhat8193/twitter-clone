@@ -142,14 +142,14 @@ const Sidebar = ({ isActive }) => {
         </div>
         <div className="sidebar__profile">
           <Avatar
-            src={user?.photoURL}
-            alt={user?.displayName}
+            src={user?.profilePic}
+            alt={user?.name}
             className="profile__avatar"
           />
           <div className="profile__name">
-            <h4>{user?.displayName}</h4>
+            <h4>{user?.name}</h4>
             <span className="profile__handle">
-              <h5>{`@${getHandle(user?.email)}`}</h5>
+              <h5>{`@${user?.handle}`}</h5>
             </span>
           </div>
         </div>

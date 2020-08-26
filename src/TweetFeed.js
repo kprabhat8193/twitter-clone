@@ -53,13 +53,13 @@ const TweetFeed = ({
   return (
     <div className="tweetFeed feed__box">
       <div className="tweetFeed__box">
-        <Avatar src={user.profilePic} alt={user.name} />
+        <Avatar src={user?.profilePic} alt={user?.name} />
         <div className="tweetFeed__right">
           <div>
             <div className="tweetFeed__rightNameBar">
-              <h3>{user.name}</h3>
+              <h3>{user?.name}</h3>
               <span className="tweet__handle">
-                <h3>{`@${user.handle}`}</h3>
+                <h3>{`@${user?.handle}`}</h3>
               </span>
               <span className="tweet__timestamp">
                 <h3>{`${formattedTimestamp?.toString()} ${formattedDate}`}</h3>

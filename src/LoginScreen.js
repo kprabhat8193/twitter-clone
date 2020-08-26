@@ -34,7 +34,13 @@ const LoginScreen = () => {
 
       dispatch({
         type: actionTypes.SET_USER,
-        user: result.user,
+        user: {
+          name: result?.user?.displayName,
+          email: result?.user?.email,
+          profilePic: result?.user?.photoURL,
+          handle: getHandle(result?.user?.email),
+          id: result?.user?.uid,
+        },
       });
     });
   };
