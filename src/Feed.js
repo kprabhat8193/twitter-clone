@@ -8,6 +8,7 @@ import TweetBox from "./TweetBox";
 import TweetFeed from "./TweetFeed";
 import db from "./firebase";
 import { useStateValue } from "./StateProvider";
+import FlipMove from "react-flip-move";
 
 const Feed = () => {
   const [tweets, setTweets] = useState([]);
@@ -63,19 +64,21 @@ const Feed = () => {
 
       <div className="feed__scrollable">
         <TweetBox />
-        {tweets.map((tweet) => (
-          <TweetFeed
-            by={tweet?.by}
-            timestamp={tweet?.timestamp}
-            tweetText={tweet?.tweetText}
-            key={tweet?.id}
-            comments={tweet?.comments}
-            retweets={tweet?.retweets}
-            likes={tweet?.likes}
-            id={tweet?.id}
-            image={tweet?.imageURL}
-          />
-        ))}
+        <FlipMove>
+          {tweets.map((tweet) => (
+            <TweetFeed
+              by={tweet?.by}
+              timestamp={tweet?.timestamp}
+              tweetText={tweet?.tweetText}
+              key={tweet?.id}
+              comments={tweet?.comments}
+              retweets={tweet?.retweets}
+              likes={tweet?.likes}
+              id={tweet?.id}
+              image={tweet?.imageURL}
+            />
+          ))}
+        </FlipMove>
       </div>
     </div>
   );
