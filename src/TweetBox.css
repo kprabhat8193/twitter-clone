@@ -8,4 +8,5 @@
 
 .tweetBox__emojiPicker {
   position: absolute;
+  z-index: 1;
 }
