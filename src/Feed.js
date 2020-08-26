@@ -7,14 +7,32 @@ import { useState } from "react";
 import TweetBox from "./TweetBox";
 import TweetFeed from "./TweetFeed";
 import db from "./firebase";
+import { useStateValue } from "./StateProvider";
 
 const Feed = () => {
   const [tweets, setTweets] = useState([]);
-  const [user, setUser] = useState({});
+  const [{ user }] = useStateValue();
+  const [following, setFollowing] = useState([]);
+
+  useEffect(() => {
+    if (user) {
+      const unsubscribe = db
+        .collection("followingm2m")
+        .where("follower", "==", `users/${user.id}`)
+        .onSnapshot((snapshot) => {
+          setFollowing(snapshot.docs.map((doc) => doc.data().following));
+        });
+
+      return () => {
+        unsubscribe();
+      };
+    }
+  }, [user]);
 
   useEffect(() => {
     const unsubscribe = db
       .collection("tweets")
+      .where("by", "in", [...following, `users/${user.id}`]) //user should be able to view his/her tweets as well
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
         setTweets(
@@ -30,7 +48,7 @@ const Feed = () => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [following]);
 
   return (
     <div className="feed">
