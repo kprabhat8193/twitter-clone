@@ -7,3 +7,19 @@
   height: 50px;
   width: 50px;
 }
+
+.user > .MuiButton-root {
+  margin-left: auto;
+  text-transform: none !important;
+  padding: 5px 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 40px;
+  background-color: var(--twitter-color);
+  color: white;
+}
+
+.user > .MuiButton-root:hover {
+  color: var(--twitter-color);
+  background-color: white;
+}
