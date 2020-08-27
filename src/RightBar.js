@@ -65,19 +65,25 @@ const RightBar = () => {
       </div>
       <div className="rightBar__whotoFollow">
         <h2>Who to Follow</h2>
-        <FlipMove>
-          {whoToFollow.map(({ name, profilePic, handle, id }) => (
-            <User
-              className="whoToFollow__user"
-              name={name}
-              profilePic={profilePic}
-              handle={handle}
-              key={id}
-              id={id}
-              displayFollowButton
-            />
-          ))}
-        </FlipMove>
+        {whoToFollow.length == 0 ? (
+          <h4 className="whotoFollow__inviteMessage">
+            Invite your friends to follow them 😉
+          </h4>
+        ) : (
+          <FlipMove>
+            {whoToFollow.map(({ name, profilePic, handle, id }) => (
+              <User
+                className="whoToFollow__user"
+                name={name}
+                profilePic={profilePic}
+                handle={handle}
+                key={id}
+                id={id}
+                displayFollowButton
+              />
+            ))}
+          </FlipMove>
+        )}
       </div>
       <div className="rightBar__timelineFeed">
         <TwitterTimelineEmbed
