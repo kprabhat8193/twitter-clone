@@ -40,10 +40,16 @@
 }
 
 .rightBar__whotoFollow {
-  margin-top: 3rem;
+  margin-top: 2rem;
   background-color: rgb(245, 248, 250);
   border-radius: 10px;
   border: 1px solid rgb(230, 236, 240);
+  max-height: 28vh;
+  overflow-y: scroll;
+}
+
+.rightBar__whotoFollow::-webkit-scrollbar {
+  display: none;
 }
 
 .rightBar__whotoFollow > h2 {
@@ -51,7 +57,7 @@
   border-bottom: 1px solid rgb(230, 236, 240);
 }
 
-.rightBar__whotoFollow > .user {
+.rightBar__whotoFollow .user {
   padding: 10px;
 }
 
