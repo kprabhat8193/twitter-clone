@@ -9,10 +9,11 @@ import TweetFeed from "./TweetFeed";
 import db from "./firebase";
 import { useStateValue } from "./StateProvider";
 import FlipMove from "react-flip-move";
+import { actionTypes } from "./reducer";
 
 const Feed = () => {
   const [tweets, setTweets] = useState([]);
-  const [{ user }] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
   const [following, setFollowing] = useState([]);
 
   useEffect(() => {
@@ -31,6 +32,11 @@ const Feed = () => {
   }, [user]);
 
   useEffect(() => {
+    dispatch({
+      type: actionTypes.SET_FOLLOWING,
+      following: following,
+    });
+
     const unsubscribe = db
       .collection("tweets")
       .where("by", "in", [...following, `users/${user.id}`]) //user should be able to view his/her tweets as well
