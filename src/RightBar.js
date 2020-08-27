@@ -1,17 +1,44 @@
 import React, { useEffect, useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
-
+import FlipMove from "react-flip-move";
 import "./RightBar.css";
 import User from "./User";
 import db from "./firebase";
+import { useStateValue } from "./StateProvider";
 
 const RightBar = () => {
-  const [users, setUsers] = useState([]);
+  const [{ user, following }] = useStateValue();
+  const [whoToFollow, setWhoToFollow] = useState([]);
+  const [followingm2m, setFollowingm2m] = useState([]);
 
   useEffect(() => {
     const unsubscribe = db.collection("users").onSnapshot((snapshot) => {
-      setUsers(
+      setWhoToFollow(
+        snapshot.docs
+          .map((doc) => {
+            return {
+              ...doc.data(),
+              id: `users/${doc.id}`,
+            };
+          })
+          .filter((singleUser) => {
+            return (
+              !following.includes(singleUser.id) &&
+              !(`users/${user.id}` === singleUser.id)
+            );
+          })
+      );
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [followingm2m, following]);
+
+  useEffect(() => {
+    const unsubscribe = db.collection("followingm2m").onSnapshot((snapshot) => {
+      setFollowingm2m(
         snapshot.docs.map((doc) => {
           return {
             ...doc.data(),
@@ -38,15 +65,19 @@ const RightBar = () => {
       </div>
       <div className="rightBar__whotoFollow">
         <h2>Who to Follow</h2>
-        {users.map(({ name, profilePic, handle, id }) => (
-          <User
-            className="whoToFollow__user"
-            name={name}
-            profilePic={profilePic}
-            handle={handle}
-            key={id}
-          />
-        ))}
+        <FlipMove>
+          {whoToFollow.map(({ name, profilePic, handle, id }) => (
+            <User
+              className="whoToFollow__user"
+              name={name}
+              profilePic={profilePic}
+              handle={handle}
+              key={id}
+              id={id}
+              displayFollowButton
+            />
+          ))}
+        </FlipMove>
       </div>
       <div className="rightBar__timelineFeed">
         <TwitterTimelineEmbed
