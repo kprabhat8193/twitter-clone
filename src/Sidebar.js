@@ -22,6 +22,7 @@ import { Link } from "react-router-dom";
 import TweetBox from "./TweetBox";
 import { useStateValue } from "./StateProvider";
 import { getHandle } from "./utils";
+import User from "./User";
 
 const Sidebar = ({ isActive }) => {
   const [{ user }] = useStateValue();
@@ -140,19 +141,14 @@ const Sidebar = ({ isActive }) => {
             </Modal>
           </div>
         </div>
-        <div className="sidebar__profile">
-          <Avatar
-            src={user?.profilePic}
-            alt={user?.name}
-            className="profile__avatar"
-          />
-          <div className="profile__name">
-            <h4>{user?.name}</h4>
-            <span className="profile__handle">
-              <h5>{`@${user?.handle}`}</h5>
-            </span>
-          </div>
-        </div>
+        <User
+          name={user?.name}
+          profilePic={user?.profilePic}
+          handle={user?.handle}
+          key={user?.id}
+          id={user?.id}
+          displayFollowButton={false}
+        />
       </nav>
     </div>
   );
