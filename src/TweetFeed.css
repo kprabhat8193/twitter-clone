@@ -62,8 +62,8 @@
 }
 
 .tweetFeed__optionsLikeButton:hover {
-  color: rgba(224, 36, 94, 0.1);
-  background: none;
+  color: rgb(255 0 0 / 85%);
+  background: rgb(255 0 0 / 11%) !important;
 }
 
 .tweetFeed__image {
