@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button } from "@material-ui/core";
 import database, { auth } from "./firebase";
 import db, { provider } from "./firebase";
+import TwitterIcon from "@material-ui/icons/Twitter";
+
 import "./LoginScreen.css";
 import { useStateValue } from "./StateProvider";
 import { actionTypes } from "./reducer";
@@ -46,15 +48,15 @@ const LoginScreen = () => {
   };
   return (
     <div className="login">
-      <div className="loginContainer">
-        <img
-          src="https://cdn2.iconfinder.com/data/icons/minimalism/512/twitter.png"
-          alt="twitter"
-        />
-        <h1>Sign in to Twitter</h1>
-        <Button variant="contained" type="button" onClick={login}>
-          Sign in with Google
-        </Button>{" "}
+      <div className="login__logo"></div>
+      <div className="login__right">
+        <div className="right__container">
+          <TwitterIcon style={{ fontSize: 50 }} />
+          <h2>See what’s happening in the world right now</h2>
+          <Button variant="contained" type="button" onClick={login}>
+            Sign in with Google
+          </Button>
+        </div>
       </div>
     </div>
   );
