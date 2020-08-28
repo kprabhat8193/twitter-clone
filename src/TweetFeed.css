@@ -50,6 +50,7 @@
 
 .tweetFeed__tweetText > p {
   line-height: 1.35rem;
+  padding-right: 10px;
 }
 
 .tweetFeed__options {
